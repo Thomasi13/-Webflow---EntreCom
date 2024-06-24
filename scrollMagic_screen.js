@@ -12,38 +12,26 @@ function getwindowWidth(slow){
 /******************
     INTRO
 *******************/
-var timeline = new TimelineMax();
-    
-var tween1 = TweenMax.fromTo("header",
-{ y:'-100%', duration:0.3, ease: Power3.easeIn},
-{ y:'0%', duration:0.3, ease: Power3.easeOut});
-
-var tween3 = TweenMax.fromTo("#logo, .rs-block.nav, .btn-nav--icon",
-{ y:'-100%', opacity:0, duration:0.2, ease: Power3.easeOut},
-{ y:'0%', opacity:1, duration:0.2, stagger:0.1, ease: Power3.easeOut});
-    
-var tween4 = TweenMax.fromTo(".nav-link",
-{ y:'100%', opacity:0, duration:0.2, stagger: 0.1, ease: Power3.easeOut},
-{ y:'0%', opacity:1, duration:0.2, stagger: 0.1, ease: Power3.easeOut});
-
-var tween5 = TweenMax.fromTo("#popup-wrapper",
-{ y:'0%', opacity:1, duration:0.3, display:"grid", ease: Power3.easeIn},
-{ y:'100%', opacity:0, duration:0.3, display:"none", ease: Power3.easeOut});
-
-
-timeline
-.add(tween1,0)
-.add(tween4,0)
-.add(tween5,0)
-.add(tween3,0.2)
-
-var scene = new ScrollMagic.Scene({
-  		triggerElement: "#agence-section", 
-   		triggerHook : 0.98,
-   		reverse : true,
+var introAnim = gsap.timeline({
+  scrollTrigger: {
+  	trigger: "#agence-section",
+	horizontal: true,
+      	scroller:".scroll-container",
+      	start: "right 5%",
+      	toggleActions: "play resume pause reverse"
+    }
 })
-.setTween(timeline)
-.addTo(controller)
+introAnim.fromTo("header", 
+	{ y:'-100%', duration:0.3, ease: Power3.easeIn},{ y:'0%', duration:0.3, ease: Power3.easeOut},0);
+introAnim.fromTo("#logo, .rs-block.nav, .btn-nav--icon", 
+	{ y:'-100%', opacity:0, duration:0.2, ease: Power3.easeOut},
+	{ y:'0%', opacity:1, duration:0.2, stagger:0.1, ease: Power3.easeOut},"<0.2");
+introAnim.fromTo(".nav-link",
+	{ y:'100%', opacity:0, duration:0.2, stagger: 0.1, ease: Power3.easeOut},
+	{ y:'0%', opacity:1, duration:0.2, stagger: 0.1, ease: Power3.easeOut},0);
+introAnim.fromTo("#popup-wrapper",
+	{ y:'0%', opacity:1, duration:0.3, display:"grid", ease: Power3.easeIn},
+	{ y:'100%', opacity:0, duration:0.3, display:"none", ease: Power3.easeOut},0);
 
 
 	
@@ -190,6 +178,7 @@ $('.image-project').each(function(){
 	.addTo(controller)
 })
 
+
 $(".project-item.home-page").each(function(){
 	var titleProject = $(this).find(".cach-title")
   	var infoProject = $(this).find(".short-description-project")
@@ -290,4 +279,3 @@ $('.block-text.anim1').each(function(){
     	.setTween(timeline)
 	.addTo(controller)
 })
-
