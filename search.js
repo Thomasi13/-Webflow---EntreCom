@@ -1,5 +1,7 @@
 
 $('#search-btn').click(function(){
+	$(this).height($(window).innerHeight())
+	
 	var t1 = new TimelineMax({paused:true});
   	t1.to('#search-transition-block', 0,
   		{opacity: 1});
@@ -8,7 +10,7 @@ $('#search-btn').click(function(){
    		{scale:70, ease: Power3.easeInOut})
     
     	t1.to('#search-wrapper', 0,
-  		{display:'block'},0)
+  		{display:'flex'},0)
       
   	t1.to('#search-wrapper' , 0.5 ,
   		{opacity:1,ease: Power3.easeInOut},0.5)
