@@ -1,5 +1,10 @@
 
 $('#search-btn').click(function(){
+	$('body').css({
+		"overflow-y":"hidden",
+		"touch-action": "none",
+		"-ms-touch-action": "none",
+	})
 	var t1 = new TimelineMax({paused:true});
   	t1.to('#search-transition-block', 0,
   		{opacity: 1});
@@ -15,8 +20,9 @@ $('#search-btn').click(function(){
     
   	t1.play()
   
-  $("#exit-search").click(function(){
+  	$("#exit-search").click(function(){
 		t1.reverse();
+		$('body').css("overflow-y","scroll")
 	})
 })
 
